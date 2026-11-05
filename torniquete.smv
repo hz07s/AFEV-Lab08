@@ -1,0 +1,13 @@
+-- Torniquete de acceso: dos estados y una entrada booleana coin.
+-- coin se declara en VAR y sin ASSIGN, asi que toma cualquier valor en cada paso.
+MODULE main
+VAR
+  state: {locked, unlocked};
+  coin: boolean;
+ASSIGN
+  init(state) := locked;
+  next(state) := case
+    (state = locked) & coin: unlocked;
+    (state = unlocked): locked;
+    TRUE: state;
+  esac;

@@ -1,0 +1,18 @@
+-- Variante del ejercicio 1: se quita la condicion (x<10) de la salida de l1.
+-- next(x) queda igual, con su limite x < 100.
+MODULE main
+VAR
+  location: {l1,l2};
+  x: 0 .. 100;
+ASSIGN
+  init(location) := l1;
+  init(x) := 0;
+  next(location) := case
+    (location = l1) : l2;
+    (location = l2) : l1;
+    TRUE: location;
+  esac;
+  next(x) := case
+    (location = l2) & x < 100: x+1;
+    TRUE: x;
+  esac;
